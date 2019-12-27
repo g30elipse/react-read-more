@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../src/lib/test.tsx"],"sourcesContent":["import React, { FC } from 'react';\n\nexport const Test: FC = () => {\n    return (\n        <div>Npm package boilerplate</div>\n    )\n}\n\nexport default Test;"],"names":[],"mappings":";;;;;;;;IAEa,IAAI,GAAO;IACpB,QACI,2DAAkC,EACrC;CACJ;;;;;"}
