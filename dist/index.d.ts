@@ -1,2 +1,2 @@
-export { default } from './lib/test';
-export * from './lib/test';
+export { default } from './lib/ReadMoreText';
+export * from './lib/ReadMoreText';
