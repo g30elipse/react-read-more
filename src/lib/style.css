@@ -1,0 +1,14 @@
+.rm-textContainer {
+display: -webkit-box;
+/* overflow: hidden; */
+
+-webkit-box-orient: vertical;
+}
+
+.rm-typography {
+    /* font-size: 16px; */
+}
+
+.rm-overflow-hidden {
+    overflow: hidden;
+}
