@@ -49,11 +49,11 @@ const ReadMoreText: React.FC<IProps> = (props) => {
 
     const _html = formatText(text);
 
-    const classNames = ' rm-typography ' + (expanded ? '' : ' rm-textContainer ') + (isOverflowing ? ' rm-overflow-hidden ' : '')
+    const classNames = ' rm-typography ' + (expanded ? '' : ' rm-text-container ') + (isOverflowing ? ' rm-overflow-hidden ' : '')
 
     return (
-        <div>
-            <div ref={containerRef}>
+        <div className="rm-container">
+            <div ref={containerRef} className="rm-text-wrapper">
                 {
                     type === 'html' ?
                         <p className={classNames} style={{
@@ -73,9 +73,13 @@ const ReadMoreText: React.FC<IProps> = (props) => {
             {
                 isOverflowing ?
                     (
-                        !expanded ?
-                            <button onClick={onAction} >{readMoreText}</button> :
-                            <button onClick={toggleExpand}>{readLessText}</button>
+                        <div className="rm-action-button-container">
+                            {
+                                !expanded ?
+                                    <button className="rm-more-button" onClick={onAction} >{readMoreText}</button> :
+                                    <button className="rm-less-button" onClick={toggleExpand}>{readLessText}</button>
+                            }
+                        </div>
                     )
                     : null
             }
