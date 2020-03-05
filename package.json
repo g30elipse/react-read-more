@@ -1,5 +1,5 @@
 {
-  "name": "react-read-more",
+  "name": "read-more-less-react",
   "version": "1.0.0",
   "description": "React component for long texts that need read-more/read-less functionality",
   "main": "dist/index.js",
