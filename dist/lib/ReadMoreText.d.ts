@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './index.css';
 interface IProps {
     text: string;
     type?: 'plainText' | 'html';

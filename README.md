@@ -1,6 +1,10 @@
-# react-read-more
+# React read more/less
 
 A react component for long text that needs read more/less functionality.
+#### Note
+Do not forget to import the styling `import 'read-more-less-react/dist/index.css'`;
+
+
 
 ##### props
 | props    | signature               | required       | description |
@@ -23,9 +27,13 @@ A react component for long text that needs read more/less functionality.
 |rm-more-button | Action button class |
 
 
+[Codesandbox demo](https://codesandbox.io/s/happy-cache-x4rhs?fontsize=14&hidenavigation=1&theme=dark)
+
+
 #### Example
 ```typescript
 import ReadMoreText from 'read-more-less-react';
+import 'read-more-less-react/dist/index.css'
 ```
 
 ```jsx
@@ -34,3 +42,6 @@ import ReadMoreText from 'read-more-less-react';
     text={TEXT}
 />
 ```
+
+#### Note
+Do not forget to import the styling `import 'read-more-less-react/dist/index.css'`;
