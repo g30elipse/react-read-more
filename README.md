@@ -1,3 +1,4 @@
+![Version](https://img.shields.io/npm/v/read-more-less-react)
 [![Build Status](https://img.shields.io/appveyor/build/g30elipse/react-read-more)](https://ci.appveyor.com/project/g30elipse/react-read-more)
 [![Dependencies](https://img.shields.io/david/g30elipse/react-read-more)](https://david-dm.org/g30elipse/react-read-more)
 [![Bundle size](https://img.shields.io/bundlephobia/minzip/read-more-less-react)](https://bundlephobia.com/result?p=read-more-less-react@1.1.0)
