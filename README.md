@@ -1,5 +1,9 @@
 # React read more/less
 
+[![Build Status](https://img.shields.io/appveyor/build/g30elipse/react-read-more)](https://ci.appveyor.com/project/g30elipse/react-read-more)
+[![Dependencies](https://img.shields.io/david/g30elipse/react-read-more)](https://david-dm.org/g30elipse/react-read-more)
+
+
 A react component for long text that needs read more/less functionality.
 #### Note
 Do not forget to import the styling `import 'read-more-less-react/dist/index.css'`;
