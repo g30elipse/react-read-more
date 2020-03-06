@@ -8,7 +8,10 @@
 
 A react component for long text that needs read more/less functionality.
 #### Note
-Do not forget to import the styling `import 'read-more-less-react/dist/index.css'`;
+Do not forget to import the styling 
+```typescript
+import 'read-more-less-react/dist/index.css';
+```
 
 
 
