@@ -11,7 +11,7 @@ var ReadMoreText = function (props) {
         if (el.scrollHeight > el.clientHeight) {
             setIsOverflowing(true);
         }
-    }, []);
+    }, [props.lines]);
     var toggleExpand = function () {
         setExpanded(!expanded);
     };

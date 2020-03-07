@@ -29,7 +29,7 @@ const ReadMoreText: React.FC<IProps> = (props) => {
             setIsOverflowing(true);
         }
 
-    }, [])
+    }, [props.lines])
 
 
     const toggleExpand = () => {
