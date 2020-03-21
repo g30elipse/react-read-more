@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-interface IProps {
+export interface ReadMoreTextProps {
     text: string;
     type?: 'plainText' | 'html';
     readMoreText?: string;
@@ -9,5 +9,5 @@ interface IProps {
     onAction?: () => void;
     lines?: number;
 }
-declare const _default: React.FC<IProps>;
+declare const _default: React.FC<ReadMoreTextProps>;
 export default _default;
