@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import './index.css'
 
 
-interface IProps {
+export interface ReadMoreTextProps {
     text: string
     type?: 'plainText' | 'html'
     readMoreText?: string
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 
-const ReadMoreText: React.FC<IProps> = (props) => {
+const ReadMoreText: React.FC<ReadMoreTextProps> = (props) => {
     const [isOverflowing, setIsOverflowing] = useState(false)
     const [expanded, setExpanded] = useState(false)
 
