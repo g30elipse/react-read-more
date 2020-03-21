@@ -37,7 +37,8 @@ import 'read-more-less-react/dist/index.css';
 |rm-text-wrapper | Text wrapper class |
 |rm-typography | Text class |
 |rm-action-button-container | Action button container class |
-|rm-more-button | Action button class |
+|rm-more-button | Action read-more button class |
+|rm-less-button | Action read-less button class |
 
 
 
