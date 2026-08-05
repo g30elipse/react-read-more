@@ -8,39 +8,36 @@ var React = require('react');
 var React__default = _interopDefault(React);
 
 var ReadMoreText = function (props) {
-    var _a = React.useState(false), isOverflowing = _a[0], setIsOverflowing = _a[1];
-    var _b = React.useState(false), expanded = _b[0], setExpanded = _b[1];
-    var containerRef = React.useRef(null);
+    var _a = props.type, type = _a === void 0 ? 'plainText' : _a, _b = props.text, text = _b === void 0 ? '' : _b, _c = props.readMoreText, readMoreText = _c === void 0 ? 'More' : _c, _d = props.readLessText, readLessText = _d === void 0 ? 'Less' : _d, _e = props.lines, lines = _e === void 0 ? 3 : _e, onAction = props.onAction;
+    var _f = React.useState(false), isOverflowing = _f[0], setIsOverflowing = _f[1];
+    var _g = React.useState(false), expanded = _g[0], setExpanded = _g[1];
+    // Measure the clamped <p> itself: once overflow:hidden applies, the
+    // wrapper reports scrollHeight == clientHeight and never detects overflow.
+    var textRef = React.useRef(null);
     React.useEffect(function () {
-        var el = containerRef.current;
+        if (expanded)
+            return;
+        var el = textRef.current;
         if (!el)
             return;
-        if (el.scrollHeight > el.clientHeight) {
-            setIsOverflowing(true);
-        }
-    }, [props.lines]);
-    var toggleExpand = function () {
-        setExpanded(!expanded);
+        setIsOverflowing(el.scrollHeight > el.clientHeight);
+    }, [text, lines, type, expanded]);
+    var handleMore = function () {
+        setExpanded(true);
+        if (onAction)
+            onAction();
     };
-    var formatText = function (text) { return text.replace(/(?:\r\n|\r|\n)/g, '<br />'); };
-    var _c = props.type, type = _c === void 0 ? 'plainText' : _c, _d = props.text, text = _d === void 0 ? '' : _d, _e = props.readMoreText, readMoreText = _e === void 0 ? 'More' : _e, _f = props.readLessText, readLessText = _f === void 0 ? 'Less' : _f, _g = props.lines, lines = _g === void 0 ? 3 : _g, _h = props.onAction, onAction = _h === void 0 ? toggleExpand : _h;
-    var _html = formatText(text);
-    var classNames = ' rm-typography ' + (expanded ? '' : ' rm-text-container ') + (isOverflowing ? ' rm-overflow-hidden ' : '');
+    var classNames = 'rm-typography' + (expanded ? '' : ' rm-text-container');
+    var clampStyle = { lineClamp: lines, WebkitLineClamp: lines };
     return (React__default.createElement("div", { className: "rm-container" },
-        React__default.createElement("div", { ref: containerRef, className: "rm-text-wrapper" }, type === 'html' ?
-            React__default.createElement("p", { className: classNames, style: {
-                    lineClamp: lines,
-                    WebkitLineClamp: lines,
-                }, dangerouslySetInnerHTML: { __html: _html } })
+        React__default.createElement("div", { className: "rm-text-wrapper" }, type === 'html' ?
+            React__default.createElement("p", { ref: textRef, className: classNames, style: clampStyle, dangerouslySetInnerHTML: { __html: text.replace(/(?:\r\n|\r|\n)/g, '<br />') } })
             :
-                React__default.createElement("p", { className: classNames, style: {
-                        lineClamp: lines,
-                        WebkitLineClamp: lines,
-                    } }, text)),
+                React__default.createElement("p", { ref: textRef, className: classNames, style: clampStyle }, text)),
         isOverflowing ?
             (React__default.createElement("div", { className: "rm-action-button-container" }, !expanded ?
-                React__default.createElement("button", { className: "rm-more-button", onClick: onAction }, readMoreText) :
-                React__default.createElement("button", { className: "rm-less-button", onClick: toggleExpand }, readLessText)))
+                React__default.createElement("button", { type: "button", className: "rm-more-button", "aria-expanded": false, onClick: handleMore }, readMoreText) :
+                React__default.createElement("button", { type: "button", className: "rm-less-button", "aria-expanded": true, onClick: function () { return setExpanded(false); } }, readLessText)))
             : null));
 };
 

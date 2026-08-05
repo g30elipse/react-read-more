@@ -1,10 +1,5 @@
 .rm-text-container {
-display: -webkit-box;
--webkit-box-orient: vertical;
-}
-
-
-
-.rm-overflow-hidden {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }

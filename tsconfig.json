@@ -12,6 +12,7 @@
         "sourceMap": true,
         "allowJs": false,
         "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "jsx": "react",
         "declaration": true,
         "moduleResolution": "node",
@@ -29,6 +30,7 @@
     ],
     "exclude": [
         "node_modules",
-        "dist"
+        "dist",
+        "src/__tests__"
     ]
 }

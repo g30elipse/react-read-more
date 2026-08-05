@@ -7,68 +7,53 @@ export interface ReadMoreTextProps {
     type?: 'plainText' | 'html'
     readMoreText?: string
     readLessText?: string
-    containerHeight?: string
     onAction?: () => void
     lines?: number
 }
 
 
 const ReadMoreText: React.FC<ReadMoreTextProps> = (props) => {
-    const [isOverflowing, setIsOverflowing] = useState(false)
-    const [expanded, setExpanded] = useState(false)
-
-
-    const containerRef = useRef<HTMLDivElement>(null);
-
-
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el) return;
-
-        if (el.scrollHeight > el.clientHeight) {
-            setIsOverflowing(true);
-        }
-
-    }, [props.lines])
-
-
-    const toggleExpand = () => {
-        setExpanded(!expanded)
-    }
-
-    const formatText = (text: string) => text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-
     const {
         type = 'plainText',
         text = '',
         readMoreText = 'More',
         readLessText = 'Less',
         lines = 3,
-        onAction = toggleExpand
+        onAction
     } = props
 
-    const _html = formatText(text);
+    const [isOverflowing, setIsOverflowing] = useState(false)
+    const [expanded, setExpanded] = useState(false)
 
-    const classNames = ' rm-typography ' + (expanded ? '' : ' rm-text-container ') + (isOverflowing ? ' rm-overflow-hidden ' : '')
+    // Measure the clamped <p> itself: once overflow:hidden applies, the
+    // wrapper reports scrollHeight == clientHeight and never detects overflow.
+    const textRef = useRef<HTMLParagraphElement>(null)
+
+    useEffect(() => {
+        if (expanded) return
+        const el = textRef.current
+        if (!el) return
+        setIsOverflowing(el.scrollHeight > el.clientHeight)
+    }, [text, lines, type, expanded])
+
+    const handleMore = () => {
+        setExpanded(true)
+        if (onAction) onAction()
+    }
+
+    const classNames = 'rm-typography' + (expanded ? '' : ' rm-text-container')
+    const clampStyle = { lineClamp: lines, WebkitLineClamp: lines }
 
     return (
         <div className="rm-container">
-            <div ref={containerRef} className="rm-text-wrapper">
+            <div className="rm-text-wrapper">
                 {
                     type === 'html' ?
-                        <p className={classNames} style={{
-                            lineClamp: lines,
-                            WebkitLineClamp: lines,
-                        }} dangerouslySetInnerHTML={{ __html: _html }} />
+                        <p ref={textRef} className={classNames} style={clampStyle}
+                            dangerouslySetInnerHTML={{ __html: text.replace(/(?:\r\n|\r|\n)/g, '<br />') }} />
                         :
-                        <p className={classNames} style={{
-                            lineClamp: lines,
-                            WebkitLineClamp: lines,
-                        }}>
-                            {text}
-                        </p>
+                        <p ref={textRef} className={classNames} style={clampStyle}>{text}</p>
                 }
-
             </div>
             {
                 isOverflowing ?
@@ -76,8 +61,8 @@ const ReadMoreText: React.FC<ReadMoreTextProps> = (props) => {
                         <div className="rm-action-button-container">
                             {
                                 !expanded ?
-                                    <button className="rm-more-button" onClick={onAction} >{readMoreText}</button> :
-                                    <button className="rm-less-button" onClick={toggleExpand}>{readLessText}</button>
+                                    <button type="button" className="rm-more-button" aria-expanded={false} onClick={handleMore}>{readMoreText}</button> :
+                                    <button type="button" className="rm-less-button" aria-expanded={true} onClick={() => setExpanded(false)}>{readLessText}</button>
                             }
                         </div>
                     )
@@ -89,4 +74,4 @@ const ReadMoreText: React.FC<ReadMoreTextProps> = (props) => {
 }
 
 
-export default (ReadMoreText)
+export default ReadMoreText

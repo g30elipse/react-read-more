@@ -5,9 +5,8 @@ export interface ReadMoreTextProps {
     type?: 'plainText' | 'html';
     readMoreText?: string;
     readLessText?: string;
-    containerHeight?: string;
     onAction?: () => void;
     lines?: number;
 }
-declare const _default: React.FC<ReadMoreTextProps>;
-export default _default;
+declare const ReadMoreText: React.FC<ReadMoreTextProps>;
+export default ReadMoreText;
