@@ -34,5 +34,5 @@ var ReadMoreText = function (props) {
             : null));
 };
 
-export default ReadMoreText;
+export { ReadMoreText as default };
 //# sourceMappingURL=index.es.js.map
